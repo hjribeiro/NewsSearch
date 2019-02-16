@@ -1,3 +1,4 @@
+
 <h1>NewsSearch</h1>
 
 Python program that searches for provided keywords on local file [hscic-news](./hscic-news) containing a list of News Articles.
