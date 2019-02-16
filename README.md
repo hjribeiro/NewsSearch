@@ -45,7 +45,7 @@ It was assumed that the search is case-sensitive. This way searching for `septem
 
 No major performance considerations were taken over code simplicity and readability. It was assumed that the file and set operations have no negative impact on the desired performance.
 
-<h2>Unit tests<h2>
+<h2>Unit tests</h2>
 
 The provided acceptance criteria were implemented as unit tests on the file [NewsSearchTest.py](NewsSearchTest.py). Two extra negative tests were added as first TDD iterations.
 
