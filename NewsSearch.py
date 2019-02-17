@@ -30,9 +30,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
     searchType = args.search_type.lower()
     print(news_search(args.keyword_list, searchType))
-
-
-
-
-
-
