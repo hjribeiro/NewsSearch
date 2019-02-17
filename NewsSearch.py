@@ -1,35 +1,21 @@
 import argparse
 
 
-def news_or_search(keyword_set, news_file):
-    line_number = 0
-    search_references = []
-    for line in news_file:
-        line_set = set(line.split())
-        if not line_set.isdisjoint(keyword_set):
-            search_references.append(line_number)
-        line_number += 1
-    return search_references
-
-
-def news_and_search(keyword_set, news_file):
-    line_number = 0
-    search_references = []
-    for line in news_file:
-        line_set = set(line.split())
-        if keyword_set.issubset(line_set):
-            search_references.append(line_number)
-        line_number += 1
-    return search_references
-
-
 def news_search(keyword_list, search_type):
     keyword_set = set(keyword_list)
     with open("hscic-news", 'r') as news_file:
-        if search_type == 'or':
-            return news_or_search(keyword_set, news_file)
-        else:
-            return news_and_search(keyword_set, news_file)
+        line_number = 0
+        search_references = []
+        for line in news_file:
+            line_set = set(line.split())
+            if search_type == 'or':  # OR search, match if keyword set and line are not disjont
+                if not line_set.isdisjoint(keyword_set):
+                    search_references.append(line_number)
+            else:
+                if keyword_set.issubset(line_set):  # AND search, match if keyword is subset of line
+                    search_references.append(line_number)
+            line_number += 1
+        return search_references
 
 
 if __name__ == "__main__":
