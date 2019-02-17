@@ -105,3 +105,11 @@ To Query for secondary indexes for July 2013, the following CURL must be execute
 ```curl localhost:8098/types/indexes/buckets/hscicNews/index/yearmonth_int/201307```
 
 This command should return the list of Keys  from July 2013.
+
+It is also possible to query for a range, the whole 2013 for example, and even return the associated News Articles associated with each key.
+To do that the following CURL should be executed:
+
+```commandline
+curl localhost:8098/types/indexes/buckets/hscicNews/index/yearmonth_int/201301/201312?return_terms=true
+
+```
