@@ -1,8 +1,9 @@
+
 <h1>NewsSearch</h1>
 
 Python program that searches for provided keywords on local file [hscic-news](./hscic-news) containing a list of News Articles.
 
-<h2>Usage<h2>
+<h2>Usage</h2>
 
 The program can be executed with the following command:
 
@@ -18,7 +19,7 @@ NewsSearch.py [-h]
 ```
 will display the usage information on the console.
 
-<h3>Examples<h3>
+<h3>Examples</h3>
 
 To search for _September_ _AND_ _2004_:
 
@@ -38,13 +39,13 @@ with the result
 ```commandline
 [0, 1, 2, 3, 4, 8]
 ```
-<h2>Design Considerations<h2>
+<h2>Design Considerations</h2>
 
 It was assumed that the search is case-sensitive. This way searching for `september` should return different results than searching for `September`.  
 
 No major performance considerations were taken over code simplicity and readability. It was assumed that the file and set operations have no negative impact on the desired performance.
 
-<h2>Unit tests<h2>
+<h2>Unit tests</h2>
 
 The provided acceptance criteria were implemented as unit tests on the file [NewsSearchTest.py](NewsSearchTest.py). Two extra negative tests were added as first TDD iterations.
 
