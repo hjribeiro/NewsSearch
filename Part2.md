@@ -74,3 +74,34 @@ curl http://localhost:8098/types/news/buckets/cache/keys/Care_Commission_Quality
 
 This should return the JSON Array stored with the news articles.
 
+<h2>Monthly Indexes</h2>
+To allow filtering by month and year, it is suggested to add a secondary index that it's the concatenation of year and month on the form YYYYMM.
+This allows searching not only for an exact month of a year, but also for a range of months.
+Example `201601` would retrieve results from January 2016, and `201701 to 201712` would retrieve all results from the year 2017.
+
+<h3>Setting Up indexes</h3>
+
+As per riak's latest documentation, it is recommended to implement this with secondary indexes instead of Riak search:
+
+`2i is thus recommended when your use case requires an easy-to-use search mechanism that does not require a schema (as does Riak Search) and a basic query interface, i.e. an interface that enables an application to tell Riak things like “fetch all objects tagged with the string Milwaukee_Bucks” or “fetch all objects tagged with numbers between 1500 and 1509.”`  
+
+To create the secondary Indexes on the first reference in the file we should run the following command:
+
+```commandline
+curl -XPUT H "Content-Type: text/plain"  \
+            -H 'x-riak-index-yearmonth_int: 201307' \
+             -d "June 5 , 2013 : The majority ..." \
+             http://localhost:8098/buckets/hscicNews/keys/RESULT:1
+```
+
+were the header `-H 'x-riak-index-yearmonth_int: 201307'` sets the secondary index `yearmonth_int` as an integer for July 2013.
+
+The remaining PUT commands are skipped, but they should be created using the appropriate key and secondary index.
+
+<h3>Query for secondary indexes</h3>
+
+To Query for secondary indexes for July 2013, the following CURL must be executed:
+
+```curl localhost:8098/types/indexes/buckets/hscicNews/index/yearmonth_int/201307```
+
+This command should return the list of Keys  from July 2013.
